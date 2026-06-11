@@ -28,7 +28,7 @@ class NjqcaRunner {
   // PROD: set _devMode = false when Flutter .exe is deployed
   //       alongside NJQCA.exe in the same folder.
   static const bool   _devMode = true;
-  static const String _devRoot = r'C:\\WindowsNJQCA';
+  static const String _devRoot = r'C:\NJ\c source code';
 
   static String get _rootDir {
     if (_devMode) return _devRoot;
