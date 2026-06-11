@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WLANProfile xmlns="http://www.microsoft.com/networking/WLAN/profile/v1">
+    <name>wifinametoshow</name>
+    <SSIDConfig>
+        <SSID>
+            <name>wifiname</name> <!-- WiFi SSID -->
+        </SSID>
+    </SSIDConfig>
+    <connectionType>ESS</connectionType>
+    <connectionMode>auto</connectionMode>
+    <MSM>
+        <security>
+            <authEncryption>
+                <authentication>WPA2PSK</authentication> <!-- WPA2 PSK Authentication -->
+                <encryption>AES</encryption> <!-- AES Encryption -->
+                <useOneX>false</useOneX> <!-- Disable 802.1X Authentication -->
+            </authEncryption>
+            <sharedKey>
+                <keyType>passPhrase</keyType> <!-- Passphrase for WPA2 -->
+                <protected>false</protected> <!-- Plaintext password -->
+                <keyMaterial>wifipassword</keyMaterial> <!-- Replace with your WiFi password -->
+            </sharedKey>
+        </security>
+    </MSM>
+</WLANProfile>

@@ -1,0 +1,46 @@
+# Third party tools - store on Google Drive separately
+Geekbench 5/
+Geekbench6/
+Hard Disk Sentinel/
+HeavyLoad/
+OpenHardwareMonitor/
+ffmpeg/
+CH341SER/
+cp210x_driver/
+Common/
+y-cruncher*/
+*.plar
+*.hdi
+*.mkv
+*.mp4
+*.dat
+BDT_update.exe
+BlueScreenView.exe
+AutopilotCheck.exe
+
+# Compiled outputs
+*.exe
+*.dll
+*.obj
+*.pdb
+*.lib
+*.a
+*.o
+*.exp
+*.ilk
+x64/
+Debug/
+Release/
+
+# Runtime
+Temp_Data/
+
+# Python
+__pycache__/
+*.pyc
+dist/
+
+# IDE
+.vs/
+*.user
+*.suo

@@ -1,0 +1,30 @@
+# Flutter
+app/.dart_tool/
+app/build/
+app/.flutter-plugins
+app/.flutter-plugins-dependencies
+app/.packages
+app/.idea/
+app/.vscode/
+app/*.iml
+
+# C++ / PyInstaller
+c source code/*.exe
+c source code/build/
+c source code/dist/
+c source code/Temp_Data/
+c source code/db/
+c source code/__pycache__/
+c source code/*.pyc
+c source code/HddSentinel_screen_shot.png
+c source code/*.mkv
+c source code/*.mp4
+c source code/Hard Disk Sentinel/
+c source code/Geekbench 5/
+c source code/Geekbench6/
+c source code/HeavyLoad/
+c source code/OpenHardwareMonitor/
+c source code/ffmpeg/
+c source code/CH341SER/
+c source code/cp210x_driver/
+c source code/y-cruncher*/
