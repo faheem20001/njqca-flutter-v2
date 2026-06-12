@@ -29,9 +29,9 @@ namespace config {
 class Constant {
   // public: string apiBaseURL = "http://10.190.4.176:8000/"; //Local
   //get ERP base URL
-  public: string apiBaseURL = "https://erp.newjaisa.com/"; //production
+  //public: string apiBaseURL = "https://erp.newjaisa.com/"; //production
   
-  // public: string apiBaseURL = "https://amzuat.newjaisa.com/"; //UAT
+   public: string apiBaseURL = "https://amzuat.newjaisa.com/"; //UAT
   // public: string apiBaseURL="http://0.0.0.0:8000/";
 
   // 
