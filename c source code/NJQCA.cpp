@@ -96,7 +96,15 @@ int getCurrentBatteryChargePercentage(Util& util) {
 
    return stoi(number);
 }
-const std::string NJQCA_TEMP_DIR = "C:\\WindowsNJQCA\\Temp_Data";
+// TO: add helper function just before line 99, then:
+std::string getExeDir() {
+    char buffer[MAX_PATH];
+    GetModuleFileNameA(NULL, buffer, MAX_PATH);
+    std::string p(buffer);
+    return p.substr(0, p.find_last_of("\\/"));
+}
+const std::string NJQCA_TEMP_DIR = getExeDir() + "\\Temp_Data";
+// NJQCA_SLEEP_BACKUP_FILE on line 100 stays same — already uses NJQCA_TEMP_DIR
 const std::string NJQCA_SLEEP_BACKUP_FILE = NJQCA_TEMP_DIR + "\\njqca_sleep_backup.csv";
 
 void runPowerShellScript(const std::string& script, const std::string& scriptPath) {
@@ -121,12 +129,14 @@ void backupSleepSettingsOnce() {
       return;
    }
 
-   std::string script = R"PS(
-$ErrorActionPreference = "Stop"
-
-$tempDir = "C:\WindowsNJQCA\Temp_Data"
-$backupPath = "C:\WindowsNJQCA\Temp_Data\njqca_sleep_backup.csv"
-
+   // TO — inject C++ variables, keep rest as raw strings:
+std::string script =
+   "$ErrorActionPreference = \"Stop\"\n"
+   "\n"
+   "$tempDir = \"" + NJQCA_TEMP_DIR + "\"\n"
+   "$backupPath = \"" + NJQCA_SLEEP_BACKUP_FILE + "\"\n"
+   "\n"
+   + R"PS(
 New-Item -ItemType Directory -Force -Path $tempDir | Out-Null
 
 $query = powercfg /query SCHEME_CURRENT SUB_SLEEP STANDBYIDLE
@@ -181,9 +191,10 @@ void restoreNJQCASleepSettings() {
       return;
    }
 
-   std::string script = R"PS(
-$backupPath = "C:\WindowsNJQCA\Temp_Data\njqca_sleep_backup.csv"
-
+   // TO:
+std::string script =
+   "$backupPath = \"" + NJQCA_SLEEP_BACKUP_FILE + "\"\n"
+   + R"PS(
 if (Test-Path $backupPath) {
    $values = (Get-Content $backupPath -Raw).Trim().Split(",")
 
@@ -421,41 +432,8 @@ int main(int argc, char* argv[]) {
       cout << "Warning: Could not write department.txt" << endl;
    }
    float version=8.8;
-   float NJSettings_Version;
    NjsettingsService njset;
-   // cout<<userDepartment<<endl;
-   json  njsetting_result=njset.getNjSettingsvalues();
-   // cout<<"223"<<endl;
-   // cout<<njsetting_result.dump(2)<<endl;
-   for (const auto& entry :  njsetting_result) {
-      
-         
-      if (entry["parameter"]=="WindowsNJQCA") {NJSettings_Version=stof(entry["value"].get<string>());
-      
-         break;
-      }
-      
-   }
-   // cout<<"version"<<version<<endl;
-   // cout<<"NJsettings "<<NJSettings_Version<<endl;
-   string updatecommand="powershell.exe -Command \".\\update.exe\"";
-   if(NJSettings_Version){
-   if(version<NJSettings_Version){
-      cout<<"current version is "<<version<<" Nj settings version is "<<NJSettings_Version<<endl;
-      // string update=util.executeTerminal("zenity --question --text=\"Update Available for NJQCA. Do you want to update now?\" --ok-label=\"Yes\" --cancel-label=\"No\" --width=300 --height=200 && echo \"1\" || echo \"0\"");
-      
-      
-      int returncode=system(updatecommand.c_str());
-      if(returncode==0){
-         // version=NJSettings_Version;
-         cout<<"\033[1;33m\nNJQCA is updated successfully to version "<<NJSettings_Version<<"\033[0m"<<endl;
-         cout<<"\033[1;33m\nPlease re-run the Application\033[0m"<<endl;
-      }      
-
-      exit(0);
-      
-   }
-}
+   json njsetting_result=njset.getNjSettingsvalues();
    json input_user_data_inspection_types;
    string inspection_type="";
    vector<string> inspection_type_list;
@@ -832,7 +810,7 @@ if (inspection_type_list.size() > 1) {
          }
       }
       if(!vibrationcheck.runTest){
-        string driver_command_1="pnputil /add-driver \"C:\\WindowsNJQCA\\lENOVO FTDI-FORCED-10x64-2.12.36.20-drp\\*.inf\" /subdirs /install"; 
+        string driver_command_1="pnputil /add-driver \"" + getExeDir() + "\\Serial\\FTDI\\FORCED\\10x64\\2.12.36.20\\*.inf\" /subdirs /install"; 
       //   string driver_command_2="pnputil /add-driver \"C:\\WindowsNJQCA\\Serial\\*.inf\" /subdirs /install"; 
         string test_command="ardunio.exe" ;  
         system(driver_command_1.c_str());

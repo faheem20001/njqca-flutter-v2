@@ -228,7 +228,7 @@ def open_scroll_and_close_word_docs(logo,num_files=5):
         pythoncom.CoInitialize()
         # desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
         # image_path = os.path.join(desktop_path,"WindowsNJQCA" ,"Temp_Data", logo)
-        image_path = os.path.join("C:\\WindowsNJQCA", "Temp_Data", logo)
+        image_path = os.path.join(BASE_DIR, "Temp_Data", logo)
         if not os.path.exists(image_path):
             print("Image not found:", image_path)
             file_obj.write(f"Image not found: {image_path}\n")
@@ -1589,7 +1589,7 @@ def run_all_photoshop(final):
     if photoshop_jobs:
         process_photoshop_batch(
             photoshop_jobs,
-            r"C:\WindowsNJQCA\Temp_Data\exported",
+            os.path.join(BASE_DIR, "Temp_Data", "exported"),
             file_obj
         )
 
@@ -1598,8 +1598,8 @@ def run_all_photoshop(final):
 
 SUPERPOSITION_BIN_DIR = r"C:\Program Files\Unigine\Superposition Benchmark\bin"
 SUPERPOSITION_EXE     = r"C:\Program Files\Unigine\Superposition Benchmark\bin\superposition.exe"
-PRESENTMON_PATH       = r"C:\WindowsNJQCA\PresentMon-2.4.0-x64.exe"
-OUTPUT_DIR            = r"C:\WindowsNJQCA"
+PRESENTMON_PATH = os.path.join(BASE_DIR, "PresentMon-2.4.0-x64.exe")
+OUTPUT_DIR = BASE_DIR
 
 PRESET_MAP = {
     "720p_low": 0, "720p_medium": 1, "1080p_medium": 2,

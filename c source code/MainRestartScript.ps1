@@ -2,8 +2,10 @@
 # $scriptPath = "C:\WindowsNJQCAReliability\restart.exe"
 # $logDir = "C:\WindowsNJQCAReliability\Temp_Data"
 # $timeLogFile = "$logDir\restart_times.txt"
-$scriptPath = "C:\WindowsNJQCA\restart.exe"
-$logDir = "C:\WindowsNJQCA\Temp_Data"
+# TO:
+$scriptDir = if ($PSScriptRoot) { $PSScriptRoot } else { Split-Path $MyInvocation.MyCommand.Path -Parent }
+$scriptPath = "$scriptDir\restart.exe"
+$logDir = "$scriptDir\Temp_Data"
 $timeLogFile = "$logDir\restart_times.txt"
 
 # Check if the Desktop directory exists
@@ -40,9 +42,10 @@ if (-not (Test-Path $timeLogFile)) {
         $currentUser = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
         Add-Content -Path $timeLogFile -Value "Creating RunNJQCA_Admin task for user: $currentUser"
 
+        # TO:
         $action = New-ScheduledTaskAction `
-        -Execute "C:\WindowsNJQCA\run_njqca.bat" `
-        -WorkingDirectory "C:\WindowsNJQCA"
+        -Execute "$scriptDir\run_njqca.bat" `
+        -WorkingDirectory "$scriptDir"
 
         $principal = New-ScheduledTaskPrincipal `
             -UserId $currentUser `

@@ -1,11 +1,12 @@
 
-$timeLogFile = "C:\WindowsNJQCA\Temp_Data\restart_times.txt"
+# TO:
+$scriptDir = if ($PSScriptRoot) { $PSScriptRoot } else { Split-Path $MyInvocation.MyCommand.Path -Parent }
+$timeLogFile = "$scriptDir\Temp_Data\restart_times.txt"
 $currentTime = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 Add-Content -Path $timeLogFile -Value "Restarted at: $currentTime"
 
-
 # Read department file written by NJQCA
-$departmentFile = "C:\WindowsNJQCA\Temp_Data\department.txt"
+$departmentFile = "$scriptDir\Temp_Data\department.txt"
 $department = ""
 if (Test-Path $departmentFile) {
     $department = (Get-Content $departmentFile -Raw).Trim()

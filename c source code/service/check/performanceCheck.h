@@ -30,9 +30,9 @@ public:
             string command =
                 "powershell -NoProfile -ExecutionPolicy Bypass -Command "
                 "\"$Output = winsat mem 2>&1; "
-                "New-Item -ItemType Directory -Force -Path 'C:\\WindowsNJQCA\\Temp_Data' | Out-Null; "
+                "New-Item -ItemType Directory -Force -Path 'Temp_Data' | Out-Null; "
                 "$Lines = $Output | ForEach-Object { $_.ToString() }; "
-                "$Lines | Out-File -Encoding UTF8 'C:\\WindowsNJQCA\\Temp_Data\\Memory_WinSAT_Result.txt'; "
+                "$Lines | Out-File -Encoding UTF8 'Temp_Data\\Memory_WinSAT_Result.txt'; "
                 "$Bandwidth = ($Lines | Where-Object { $_ -match '^\\s*>\\s*Memory\\s+Performance\\s+[\\d.]+' } | Select-Object -First 1); "
                 "Write-Output $Bandwidth\"";
 
@@ -61,7 +61,7 @@ public:
                 cout << "WinSAT Memory Performance value not found" << endl;
             }
 
-            string winsat_file_path = "C:\\WindowsNJQCA\\Temp_Data\\Memory_WinSAT_Result.txt";
+            string winsat_file_path = "Temp_Data\\Memory_WinSAT_Result.txt";
 
             if (fs::exists(winsat_file_path)) {
                 string uploaded_file = getfromERP.updateFile2ERp(winsat_file_path.c_str());

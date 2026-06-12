@@ -5,7 +5,9 @@ $interval = 10
 $csvPath = "$env:USERPROFILE\Desktop\HeavyLoad_Report.csv"
 $duration = 7
 
-$departmentFile = "C:\WindowsNJQCA\Temp_Data\department.txt"
+# TO:
+$scriptDir = if ($PSScriptRoot) { $PSScriptRoot } else { Split-Path $MyInvocation.MyCommand.Path -Parent }
+$departmentFile = "$scriptDir\Temp_Data\department.txt"
 $department = ""
 if (Test-Path $departmentFile) {
     $department = (Get-Content $departmentFile -Raw).Trim()

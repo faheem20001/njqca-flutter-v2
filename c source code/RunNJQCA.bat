@@ -1,8 +1,8 @@
 @echo off
 echo Script is running from: %~dp0
 
-:: Change to C:\WindowsNJQCA (where NJQCA.exe and db\ live)
-cd /d "C:\WindowsNJQCA"
+:: Change to directory where this bat file lives
+cd /d "%~dp0"
 echo Changed to directory: %cd%
 
 :: Relaunch as Administrator if not already

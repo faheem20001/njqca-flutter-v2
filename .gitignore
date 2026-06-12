@@ -29,3 +29,5 @@ c source code/CH341SER/
 c source code/cp210x_driver/
 c source code/y-cruncher*/app.zip 
 app/app.zip 
+c source code/flutter_ui/ 
+app/devtools_options.yaml 

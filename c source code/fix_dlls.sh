@@ -3,7 +3,7 @@
 # Run this in MSYS2 MINGW64 shell AFTER compile.bat succeeds.
 # Deletes old incompatible DLLs then copies correct MSYS2 versions.
 
-DEPLOY=/c/WindowsNJQCA
+DEPLOY="$(cd "$(dirname "$0")" && pwd)"
 TEMP=/tmp/njqca_dll_check
 
 echo "=== Step 1: Remove old incompatible DLLs ==="
