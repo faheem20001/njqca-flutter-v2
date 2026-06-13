@@ -5,7 +5,7 @@
 #define MyAppVersion "8.8"
 #define MyAppPublisher "NewJaisa Tehnologies Ltd."
 #define MyAppURL "https://newjaisa.com/"
-#define SourceDir "C:\NJ\c source code"
+#define SourceDir "C:\NJ\c_source_code"
 
 [Setup]
 AppId={{CB664719-0CB5-421D-ABD7-5A0674315607665594}

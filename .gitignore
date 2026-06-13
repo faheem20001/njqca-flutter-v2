@@ -9,25 +9,25 @@ app/.vscode/
 app/*.iml
 
 # C++ / PyInstaller
-c source code/*.exe
-c source code/build/
-c source code/dist/
-c source code/Temp_Data/
-c source code/db/
-c source code/__pycache__/
-c source code/*.pyc
-c source code/HddSentinel_screen_shot.png
-c source code/*.mkv
-c source code/*.mp4
-c source code/Hard Disk Sentinel/
-c source code/Geekbench 5/
-c source code/Geekbench6/
-c source code/HeavyLoad/
-c source code/OpenHardwareMonitor/
-c source code/ffmpeg/
-c source code/CH341SER/
-c source code/cp210x_driver/
-c source code/y-cruncher*/app.zip 
+c_source_code/*.exe
+c_source_code/build/
+c_source_code/dist/
+c_source_code/Temp_Data/
+c_source_code/db/
+c_source_code/__pycache__/
+c_source_code/*.pyc
+c_source_code/HddSentinel_screen_shot.png
+c_source_code/*.mkv
+c_source_code/*.mp4
+c_source_code/Hard Disk Sentinel/
+c_source_code/Geekbench 5/
+c_source_code/Geekbench6/
+c_source_code/HeavyLoad/
+c_source_code/OpenHardwareMonitor/
+c_source_code/ffmpeg/
+c_source_code/CH341SER/
+c_source_code/cp210x_driver/
+c_source_code/y-cruncher*/app.zip 
 app/app.zip 
-c source code/flutter_ui/ 
+c_source_code/flutter_ui/ 
 app/devtools_options.yaml 
